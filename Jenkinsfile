@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Lancer le test') {
             steps {
-                sh'npx newman run collections/collection.json -e env/preprod.json -r cli,htmlextra'
+                sh'npx playwright test'
             }
         }
        
