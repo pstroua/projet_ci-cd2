@@ -1,28 +1,27 @@
 pipeline {
     agent {
-        docker{
+        docker {
             image 'mcr.microsoft.com/playwright:v1.65.0-jammy'
-            args '-u root --entrypoint='
+            args '-u root'
         }
     }
     stages {
-         stage('Check version nodejs') {
+        stage('Check version nodejs') {
             steps {
-                sh 'newman --version'
+                sh 'node --version'
                 sh 'npm --version'
             }
         }
         stage('install dep') {
             steps {
-                sh 'npm install'
+                sh 'npm install -g newman newman-reporter-htmlextra'
+                sh 'newman --version'
             }
         }
         stage('Lancer le test') {
             steps {
-                sh'npx playwright test'
+                sh 'newman run ma_collection.json -e mon_env.json -r cli,htmlextra --reporter-htmlextra-export newman-report.html'
             }
         }
-       
-         
     }
 }
