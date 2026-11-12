@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'postman/newman:latest'
+            image 'sbx/playwright:latest'
             args '-u root --entrypoint='
         }
     }
