@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'sbx/playwright:latest'
+            image 'mcr.microsoft.com/playwright:v1.65.0-jammy'
             args '-u root --entrypoint='
         }
     }
